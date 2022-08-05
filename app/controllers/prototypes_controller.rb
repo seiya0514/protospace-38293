@@ -1,9 +1,10 @@
 class PrototypesController < ApplicationController
   before_action :set_tweet, only: [:edit, :show]
-  before_action :authenticate_user!, except: [:show, :create, :destroy]
+  before_action :authenticate_user!, only: [:edit, :new, :destroy]
   before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
+    @prototypes = Prototype.all
     @prototypes = Prototype.includes(:user)
   end
 
